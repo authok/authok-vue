@@ -169,7 +169,7 @@ export interface AuthokVueClient {
    * logout();
    * ```
    *
-   * Clears the application session and performs a redirect to `/v2/logout`, using
+   * Clears the application session and performs a redirect to `/v1/logout`, using
    * the parameters provided as arguments, to clear the Authok session.
    *
    * **Note:** If you are using a custom cache, and specifying `localOnly: true`, and you want to perform actions or read state from the SDK immediately after logout, you should `await` the result of calling `logout`.

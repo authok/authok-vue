@@ -197,8 +197,8 @@ export default {
       {
         audience:
           props.domain?.indexOf('http') > -1
-            ? props.domain + '/api/v2/'
-            : 'https://' + props.domain + '/api/v2/',
+            ? props.domain + '/api/v1/'
+            : 'https://' + props.domain + '/api/v1/',
         scope: 'read:rules',
         access_tokens: [],
         suffix: ''
