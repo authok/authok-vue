@@ -3,7 +3,7 @@
   "name": "@authok/authok-vue",
   "description": "Vue 的 Authok SDK, 基于 PKCE授权码流程",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/lib/authok-vue.cjs.js",
   "types": "dist/typings/index.d.ts",
   "module": "dist/authok-vue.production.esm.js",
