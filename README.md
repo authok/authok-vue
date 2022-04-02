@@ -17,18 +17,18 @@ Authok SDK for Vue 3 Applications using [Authorization Code Grant Flow with PKCE
   - [安装](#安装)
   - [快速开始](#快速开始)
     - [Authok 配置](#authok-配置)
-    - [Configuring the plugin](#configuring-the-plugin)
-    - [Add login to your application](#add-login-to-your-application)
-    - [Display the user profile](#display-the-user-profile)
-    - [Add logout to your application](#add-logout-to-your-application)
-    - [Calling an API](#calling-an-api)
-    - [Accessing ID Token claims](#accessing-id-token-claims)
-    - [Error Handling](#error-handling)
-    - [Protect a route](#protect-a-route)
-  - [Contributing](#contributing)
-  - [Support + Feedback](#support--feedback)
-  - [Frequently Asked Questions](#frequently-asked-questions)
-  - [Vulnerability Reporting](#vulnerability-reporting)
+    - [配置插件](#配置插件)
+    - [添加登录](#添加登录)
+    - [显示用户信息](#显示用户信息)
+    - [添加退登](#添加退登)
+    - [调用 API](#调用-api)
+    - [访问 ID Token 声明](#访问-id-token-声明)
+    - [错误处理](#错误处理)
+    - [保护路由](#保护路由)
+  - [贡献](#贡献)
+  - [支持 & 反馈](#支持--反馈)
+  - [常见问题](#常见问题)
+  - [缺陷报告](#缺陷报告)
   - [Authok 是什么](#authok-是什么)
   - [许可](#许可)
 
@@ -59,18 +59,18 @@ yarn add @authok/authok-vue
   - [安装](#安装)
   - [快速开始](#快速开始)
     - [Authok 配置](#authok-配置)
-    - [Configuring the plugin](#configuring-the-plugin)
-    - [Add login to your application](#add-login-to-your-application)
-    - [Display the user profile](#display-the-user-profile)
-    - [Add logout to your application](#add-logout-to-your-application)
-    - [Calling an API](#calling-an-api)
-    - [Accessing ID Token claims](#accessing-id-token-claims)
-    - [Error Handling](#error-handling)
-    - [Protect a route](#protect-a-route)
-  - [Contributing](#contributing)
-  - [Support + Feedback](#support--feedback)
-  - [Frequently Asked Questions](#frequently-asked-questions)
-  - [Vulnerability Reporting](#vulnerability-reporting)
+    - [配置插件](#配置插件)
+    - [添加登录](#添加登录)
+    - [显示用户信息](#显示用户信息)
+    - [添加退登](#添加退登)
+    - [调用 API](#调用-api)
+    - [访问 ID Token 声明](#访问-id-token-声明)
+    - [错误处理](#错误处理)
+    - [保护路由](#保护路由)
+  - [贡献](#贡献)
+  - [支持 & 反馈](#支持--反馈)
+  - [常见问题](#常见问题)
+  - [缺陷报告](#缺陷报告)
   - [Authok 是什么](#authok-是什么)
   - [许可](#许可)
 
@@ -96,7 +96,7 @@ Next, configure the following URLs for your application under the "Application U
 
 Take note of the **Client ID** and **Domain** values under the "Basic Information" section. You'll need these values in the next step.
 
-### Configuring the plugin
+### 配置插件
 
 Create an instance of the `AuthOKPlugin` by calling `createAuthOK` and pass it to Vue's `app.use()`.
 
@@ -116,7 +116,7 @@ app.use(
 app.mount('#app');
 ```
 
-### Add login to your application
+### 添加登录
 
 In order to add login to your application you can use the `loginWithRedirect` function that is exposed on the return value of `useAuthok`, which you can access in your component's `setup` function.
 
@@ -171,7 +171,7 @@ Once setup returns the correct method, you can call that method from your compon
 
 </details>
 
-### Display the user profile
+### 显示用户信息
 
 To display the user's information, you can use the reactive `user` property exposed by the return value of `useAuthok`, which you can access in your component's `setup` function.
 
@@ -242,7 +242,7 @@ Note: Ensure the user is authenticated by implementing [login in your applicatio
 
 </details>
 
-### Add logout to your application
+### 添加退登
 
 Adding logout to your application you be done by using the `logout` function that is exposed on the return value of `useAuthok`, which you can access in your component's `setup` function.
 
@@ -297,7 +297,7 @@ Once setup returns the correct method, you can call that method from your compon
 
 </details>
 
-### Calling an API
+### 调用 API
 
 To call an API, configure the plugin by setting the `audience` to the API Identifier of the API in question:
 
@@ -369,7 +369,7 @@ Retrieving an Access Token can be done by using the `getAccessTokenSilently` fun
 
 </details>
 
-### Accessing ID Token claims
+### 访问 ID Token 声明
 
 To get access to the user's claims, you can use the reactive `idTokenClaims` property exposed by the return value of `useAuthok`, which you can access in your component's `setup` function.
 
@@ -437,7 +437,7 @@ Once setup returns the SDK's reactive property, you can access that property fro
 
 </details>
 
-### Error Handling
+### 错误处理
 
 When using this SDK, it could be the case that it is unable to correctly handle the authentication flow for a variety of reasons (e.g. an expired session with Authok when trying to get a token silently). In these situations, calling the actual methods will result in an exception being thrown (e.g. `login_required`). On top of that, these errors are made available through the SDK's reactive `error` property:
 
@@ -495,7 +495,7 @@ Once setup returns the SDK's `error` property, you can access that property from
 
 </details>
 
-### Protect a route
+### 保护路由
 
 If you are using our authok-Vue SDK with [Vue-Router](https://next.router.vuejs.org/), you can protect a route by using the [Navigation Guard](https://next.router.vuejs.org/guide/advanced/navigation-guards.html) provided by the SDK.
 
@@ -531,7 +531,7 @@ Applying the guard to a route, as shown above, will only allow access to authent
 
 > ⚠️ If you are using multiple Vue applications with our SDK on a single page, using the above guard does not support a situation where the Authok Domain and ClientID would be different. In that case, read [our guide on protecting a route when using multiple Vue applications](https://github.com/authok/authok-vue/blob/main/EXAMPLES.md#1-protecting-a-route-when-using-multiple-vue-applications).
 
-## Contributing
+## 贡献
 
 We appreciate feedback and contribution to this repo! Before you get started, please see the following:
 
@@ -539,15 +539,15 @@ We appreciate feedback and contribution to this repo! Before you get started, pl
 - [Authok's code of conduct guidelines](https://github.com/authok/open-source-template/blob/master/CODE-OF-CONDUCT.md)
 - [This repo's contribution guide](https://github.com/authok/authok-vue/blob/main/CONTRIBUTING.md)
 
-## Support + Feedback
+## 支持 & 反馈
 
 For support or to provide feedback, please [raise an issue on our issue tracker](https://github.com/authok/authok-vue/issues).
 
-## Frequently Asked Questions
+## 常见问题
 
 For a rundown of common issues you might encounter when using the SDK, please check out [the FAQ](https://github.com/authok/authok-vue/blob/main/FAQ.md).
 
-## Vulnerability Reporting
+## 缺陷报告
 
 Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://authok.com/whitehat) details the procedure for disclosing security issues.
 
