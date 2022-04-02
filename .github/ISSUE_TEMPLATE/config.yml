@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: FAQ
+    url: https://github.com/authok/authok-vue/blob/master/FAQ.md
+    about: Read the FAQ to get answers to common issues
+  - name: SDK API Documentation
+    url: https://authok.github.io/authok-vue/
+    about: Read the API documentation for this SDK

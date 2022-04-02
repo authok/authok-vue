@@ -1,0 +1,34 @@
+import { createApp } from 'vue';
+import { createAuthok } from '../src/index';
+// Fix for https://github.com/ezolenko/rollup-plugin-typescript2/issues/129#issuecomment-454558185
+// @ts-ignore
+import Playground from './App.vue';
+import { createRouter } from './router';
+
+const defaultDomain = 'http://127.0.0.1:3000';
+const defaultClientId = 'testing';
+const defaultAudience = 'Test';
+
+const res = JSON.parse(localStorage.getItem('vue-playground-data'));
+const domain = res?.domain || defaultDomain;
+const client_id = res?.client_id || defaultClientId;
+const audience = res?.audience || defaultAudience;
+
+createApp(Playground)
+  .use(
+    createRouter({
+      domain,
+      client_id,
+      audience
+    })
+  )
+  .use(
+    createAuthok({
+      domain,
+      client_id,
+      audience,
+      useFormData: res?.useFormData || true,
+      redirect_uri: window.location.origin
+    })
+  )
+  .mount('#app');

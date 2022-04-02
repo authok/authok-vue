@@ -1,0 +1,62 @@
+version: 2.1
+orbs:
+  ship: authok/ship@0.3.1
+parameters:
+  docker_image:
+    type: string
+    default: cypress/browsers:node16.13.2-chrome97-ff96
+jobs:
+  build:
+    docker:
+      - image: << pipeline.parameters.docker_image >>
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: build
+          command: npm run build
+          environment:
+            WITH_STATS: true
+      - run: npm run test:es-check
+      - run: npm run print-bundle-size
+      - run: npm run test -- --maxWorkers=2
+      - run: npm run print-bundle-size
+      - save_cache:
+          key: vue-dist-{{ .Revision }}
+          paths:
+            - dist
+      - run:
+          name: Upload coverage
+          command: ./node_modules/.bin/codecov
+  browserstack:
+    docker:
+      - image: << pipeline.parameters.docker_image >>
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm ci
+      - restore_cache:
+          key: spa-dist-{{ .Revision }}
+      - run: npx concurrently --raw --kill-others --success first "npm:dev" "wait-on http://127.0.0.1:3000/ && browserstack-cypress run --build-name $CIRCLE_BRANCH"
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - browserstack:
+          requires:
+            - build
+          context:
+            - browserstack-env
+      - ship/node-publish:
+          publish-command: npm publish
+          context:
+            - publish-npm
+            - publish-gh
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - browserstack
